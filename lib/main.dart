@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotovsk/modul/pages/HomeScreen.dart';
+import 'package:kotovsk/modul/pages/news_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomeScreen(),
+      routes: {'/NewsPage': (context) => const NewsPage()},
     );
   }
 }
-

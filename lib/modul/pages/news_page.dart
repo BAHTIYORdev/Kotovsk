@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kotovsk/modul/pages/news_page.dart';
+import 'package:kotovsk/modul/pages/HomeScreen.dart';
+import 'package:kotovsk/modul/pages/Password_Screen.dart';
 
 void main() {
-  runApp(const HomeScreen());
+  runApp(const NewsPage());
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class NewsPage extends StatelessWidget {
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
-                        itemCount: 6,
+                        itemCount: 9,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
@@ -67,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                                 PageRouteBuilder(
                                   pageBuilder: (context, animation,
                                           secondaryAnimation) =>
-                                      NewsPage(),
+                                      HomeScreen(),
                                   transitionsBuilder: (context, animation,
                                       secondaryAnimation, child) {
                                     var begin = Offset(1.0, 0.0);
@@ -88,9 +89,15 @@ class HomeScreen extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              child: Image.asset(
-                                "assets/images/${index + 1}.png",
-                                fit: BoxFit.cover,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5),
+                                child: Image.asset(
+                                  "assets/images/${index + 1}.png",
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           );
@@ -103,13 +110,13 @@ class HomeScreen extends StatelessWidget {
             ),
             Positioned(
               top: 58,
-              right: 20,
+              right: 150,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => NewsPage(),
+                      builder: (context) => PasswordPage(),
                     ),
                   );
                 },
@@ -117,7 +124,35 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: Color.fromRGBO(219, 187, 105, 1.0),
                 ),
                 child: Text(
-                  'Новости',
+                  'Добавить',
+                  style: GoogleFonts.philosopher(
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 58,
+              right: 20,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(219, 187, 105, 1.0),
+                ),
+                child: Text(
+                  'назад',
                   style: GoogleFonts.philosopher(
                     textStyle: TextStyle(
                       fontSize: 20,
