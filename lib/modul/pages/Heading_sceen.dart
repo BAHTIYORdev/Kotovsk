@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SecondPage extends StatefulWidget {
+class Sextends StatefulWidget {
   const SecondPage({super.key});
 
   @override

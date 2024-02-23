@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kotovsk/modul/pages/HomeScreen.dart';
 import 'package:kotovsk/modul/pages/Password_Screen.dart';
 
-void main() {
-  runApp(const NewsPage());
-}
+// // void main() {
+// //   runApp(const NewsPage());
+// }
 
 class NewsPage extends StatelessWidget {
   const NewsPage({Key? key}) : super(key: key);

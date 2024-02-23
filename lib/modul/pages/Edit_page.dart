@@ -82,7 +82,14 @@ class EditPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(219, 187, 105, 1.0),
+                  backgroundColor: Color.fromRGBO(246, 253, 199, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Set border radius here
+                  ),
+                  side: BorderSide(
+                    color: Color.fromARGB(219, 187, 105, 1), // Set border color here
+                    width: 2, // Set border width here
+                  ),
                 ),
                 child: Text(
                   'Добавить',
@@ -91,7 +98,7 @@ class EditPage extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -110,7 +117,14 @@ class EditPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(219, 187, 105, 1.0),
+                  backgroundColor: Color.fromRGBO(246, 253, 199, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Set border radius here
+                  ),
+                  side: BorderSide(
+                    color: Color.fromARGB(219, 187, 105, 1), // Set border color here
+                    width: 2, // Set border width here
+                  ),
                 ),
                 child: Text(
                   'Выйти',
@@ -119,7 +133,7 @@ class EditPage extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -174,36 +188,72 @@ class GridItem extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Image.asset(
-                "assets/images/${index + 1}.png",
+                "assets/images/204.png",
                 fit: BoxFit.cover,
+                color: Colors.white .withOpacity(0.9),
+                colorBlendMode: BlendMode.softLight,
               ),
             ),
           ),
           Positioned(
-            top: 0,
-            left: 0,
+            top: 10,
+            left: 12,
+            width: 125,
+            height: 35,
             child: ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
                 // Handle edit button tap
                 print('Edit button tapped for item $index');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(219, 187, 105, 1.0),
+                backgroundColor: Color.fromRGBO(246, 253, 199, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5), // Set border radius here
+                ),
+                side: BorderSide(
+                  color: Color.fromARGB(219, 187, 105, 1), // Set border color here
+                  width: 2, // Set border width here
+                ),
               ),
               child: Text(
-                'Edit',
+                'Изменить',
                 style: GoogleFonts.philosopher(
                   textStyle: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w900,
                     fontStyle: FontStyle.italic,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ),
             ),
           ),
-        ],
+            Positioned(
+            bottom: 0,
+    left: 0,
+    right: 24,
+    child: Container(
+    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    child: Text(
+    'Оборона Ленинграда', // Your text here
+    style: GoogleFonts.philosopher(
+    textStyle: TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.w700,
+    fontStyle: FontStyle.italic,
+    color: Colors.black,
+    ),
+    ),
+    ),
+    ),
+    ),
+       ],
       ),
     );
   }
