@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kotovsk/modul/pages/Edit_page.dart';
+import 'package:kotovsk/modul/pages/HomeScreen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(PasswordPage());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class PasswordPage extends StatefulWidget {
+  const PasswordPage({Key? key}) : super(key: key);
+
   @override
   _PasswordPageState createState() => _PasswordPageState();
 }
@@ -21,19 +26,25 @@ class PasswordPage extends StatefulWidget {
 class _PasswordPageState extends State<PasswordPage> {
   String _password = '';
 
-  void _addToPassword(String char) {
-    setState(() {
-      _password += char;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Вход в админ панель'),
+        backgroundColor: Color.fromARGB(255, 9, 69, 37),
+        title: Text(
+          'Вход в админ панель',
+          style: GoogleFonts.philosopher(
+            textStyle: TextStyle(
+              height: 15,
+              fontSize: 45,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.italic,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
-      backgroundColor: Color.fromRGBO(9, 69, 37, 100),
+      backgroundColor: Color.fromRGBO(9, 69, 37, 1), // Dark green background
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +60,7 @@ class _PasswordPageState extends State<PasswordPage> {
             ),
             SizedBox(height: 20.0),
             Container(
-              width: 400, // Adjust width as needed
+              width: 300, // Adjust width as needed
               child: TextField(
                 onChanged: (value) {
                   setState(() {
@@ -59,69 +70,41 @@ class _PasswordPageState extends State<PasswordPage> {
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Введите пароль',
                   hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
                 ),
                 textInputAction: TextInputAction.done,
                 maxLines: 1,
               ),
             ),
             SizedBox(height: 20.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildKey('1'),
-                _buildKey('2'),
-                _buildKey('3'),
-                _buildKey('4'),
-                _buildKey('5'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildKey('6'),
-                _buildKey('7'),
-                _buildKey('8'),
-                _buildKey('9'),
-                _buildKey('0'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildKey('A'),
-                _buildKey('B'),
-                _buildKey('C'),
-                _buildKey('D'),
-                _buildKey('E'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildKey('F'),
-                _buildKey('G'),
-                _buildKey('H'),
-                _buildKey('I'),
-                _buildKey('J'),
-              ],
+            ElevatedButton(
+              onPressed: () {
+                // Validate the entered password (add your logic here)
+                if (_password == 'admin123') {
+                  // Navigate to the next screen (e.g., Home page)
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditPage()),
+                  );
+                } else {
+                  // Show "Incorrect Password" message
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Неверно!')), // "Неверно!" means "Incorrect!"
+                  );
+                }
+              },
+              child: Text('Войти'), // "Login" in Russian
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildKey(String char) {
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: ElevatedButton(
-        onPressed: () => _addToPassword(char),
-        child: Text(
-          char,
-          style: TextStyle(fontSize: 24.0),
         ),
       ),
     );
